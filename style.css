@@ -31,6 +31,18 @@ body::before {
   z-index: 1; /* Ensure navbar is above the fixed background */
 }
 
+.navbar::after {
+  content: "";
+  position: absolute;
+  top: 50%; /* Center vertically */
+  right: -20px; /* Position outside the navbar, adjust as needed */
+  transform: translateY(-50%); /* Adjust for exact centering */
+  width: 20px; /* Width of the pointer */
+  height: 50px; /* Height of the pointer, adjust based on design */
+  background-color: #9056DB; /* Purple color, adjust as needed */
+  z-index: 2; /* Ensure it's above the navbar content */
+}
+
 .navbar-handle {
   position: absolute;
   left: -5px; /* Adjust if needed to ensure the handle is always accessible */
