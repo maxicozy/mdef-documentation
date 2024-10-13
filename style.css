@@ -1,27 +1,67 @@
 body {
   font-family: sans-serif;
   margin: 0;
-  display: flex;
+  display: grid;  
+  grid-template-columns: auto 200px; /* Content area and navbar */
+  grid-template-rows: 100vh;
   height:100vh;
+  overflow: hidden; /* Prevent scrolling on the body itself */
+  flex-direction: row-reverse;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='15' height='15' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='14' y='14' width='1' height='1' fill='%23cccccc' /%3E%3C/svg%3E");
+  background-repeat: repeat;
+  z-index: -1; /* Ensure it's behind all other content */
 }
 
 .navbar {
-  width: 20%;
+  position: fixed; /* Make navbar fixed */
+  grid-column: 2 / 3;
+  right: 0; /* Start fully visible */
+  width: 200px;
   height: 100vh;
-  background-color: #000000;
-  border-radius: 2px;
+  background: var(--navigation-background, linear-gradient(487deg, rgba(208, 74, 255, 0.24) 8.26%, rgba(230, 209, 238, 0.01) 119.32%));
+  z-index: 1; /* Ensure navbar is above the fixed background */
+}
+
+.navbar-handle {
+  position: absolute;
+  left: -5px; /* Adjust if needed to ensure the handle is always accessible */
+  top: 15%;
+  width: 10px;
+  height: 70vh;
+  background-color: #640ED2;
+  z-index: 2; /* Above the navbar content */
 }
 
 .navbar-inner {
   display: flex;
+  width: 347px;
+  height: 1024px;
+  align-items: center;
   flex-direction: column;
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 10px 0;
+  margin-top: 42px;
+  margin-right: 56px;
+  color: var(--highlight, #640ED2);
+  text-align: right;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 .navbar a {
-  color: #ffffff;
+  color: #9056DB;
+  text-decoration: none; /* Optional: removes underline from links */
   display: inline-block;
   font-size: 15px;
   padding: 10px;
@@ -34,14 +74,63 @@ body {
 }
 
 .navbar a:hover {
-  color: #000000;
+  color: #640ED2;
+}
+
+.navbar a.active {
+  color: #640ED2; /* Color for the currently selected page */
+}
+
+.navbar-closed .navbar-handle {
+  right: calc(-50px - 14%); /* Move the handle to stay at the edge of the navbar */
+}
+
+.navbar-inner, .navbar a {
+  transition: opacity 0.5s ease-out; /* Smooth transition for fading content */
+}
+
+/* Ensure content inside navbar fades out without affecting the navbar's own visibility */
+.navbar-closed .navbar-inner, .navbar-closed .navbar a {
+  opacity: 0;
 }
 
 .content {
-  flex-grow: 1; /* New: Allow content to take up the remaining space */
-  max-width: 1280px;
   margin: auto;
-  padding-left: 10px;
+  margin-top: 84px;
+  overflow-y: auto;  width: 1057px;
+  grid-column: 1 / 2;
+  padding-right: 10px;
+  overflow-y: auto; /* Enable scrolling for content */
+  height: 100vh; /* Limit height to enforce scrolling */
+  position: relative; /* Ensure content is scrollable over the fixed background */
+  z-index: 0; /* Ensure content scrolls under the navbar */
+}
+
+.intro {
+  width: 700px;
+}
+
+.title {
+  font-family: Inter;
+  font-size: 42px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: var(--highlight, #640ED2);
+}
+
+.text {
+  color: var(--text, #43254E);
+  font-size: 18px;
+  font-family: Inter;
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.18px;
+}
+
+.highlight {
+  color: var(--highlight, #640ED2);
 }
 
 footer, footer a {
