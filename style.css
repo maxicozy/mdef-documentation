@@ -5,8 +5,13 @@ body {
   grid-template-columns: auto 200px; /* Content area and navbar */
   grid-template-rows: 100vh;
   height:100vh;
-  overflow: hidden; /* Prevent scrolling on the body itself */
+  overflow-x: hidden; /* Prevent scrolling on the body itself */
+  overflow-y: auto; /* Allow vertical scrolling */
   flex-direction: row-reverse;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body::before {
@@ -21,13 +26,23 @@ body::before {
   z-index: -1; /* Ensure it's behind all other content */
 }
 
+.main-container {
+  display: grid;
+  grid-template-columns: auto 1fr; 
+  align-items: start; /* Align items to the start of the container */
+  width: 100%;
+  overflow: visible; /* Step 2: Adjust overflow property */
+}
+
+
 .navbar {
   position: fixed; /* Make navbar fixed */
+  display: flex;
+  flex-direction: column;
   grid-column: 2 / 3;
   right: 0; /* Start fully visible */
   width: 200px;
   height: 100vh;
-  background: var(--navigation-background, linear-gradient(487deg, rgba(208, 74, 255, 0.24) 8.26%, rgba(230, 209, 238, 0.01) 119.32%));
   z-index: 1; /* Ensure navbar is above the fixed background */
 }
 
@@ -35,12 +50,13 @@ body::before {
   content: "";
   position: absolute;
   top: 50%; /* Center vertically */
-  right: -20px; /* Position outside the navbar, adjust as needed */
+  right: 0px; /* Position outside the navbar, adjust as needed */
   transform: translateY(-50%); /* Adjust for exact centering */
-  width: 20px; /* Width of the pointer */
-  height: 50px; /* Height of the pointer, adjust based on design */
+  width: 48px; /* Width of the pointer */
+  height: 32px; /* Height of the pointer, adjust based on design */
   background-color: #9056DB; /* Purple color, adjust as needed */
   z-index: 2; /* Ensure it's above the navbar content */
+  background: var(--highlight, #640ED2);
 }
 
 .navbar-handle {
@@ -50,18 +66,17 @@ body::before {
   width: 10px;
   height: 70vh;
   background-color: #640ED2;
-  z-index: 2; /* Above the navbar content */
+  z-index: 1000; /* Above the navbar content */
 }
 
 .navbar-inner {
   display: flex;
-  width: 347px;
+  align-items: center; /* Centers children (links) horizontally in a column layout */
+  width: 200px;
   height: 1024px;
-  align-items: center;
   flex-direction: column;
-  max-width: 1280px;
-  margin-top: 42px;
-  margin-right: 56px;
+  justify-content: center;
+  padding-right: 100px;
   color: var(--highlight, #640ED2);
   text-align: right;
   font-family: Inter;
@@ -69,6 +84,7 @@ body::before {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  background: var(--navigation-background, linear-gradient(487deg, rgba(208, 74, 255, 0.24) 8.26%, rgba(230, 209, 238, 0.01) 119.32%));
 }
 
 .navbar a {
@@ -90,7 +106,19 @@ body::before {
 }
 
 .navbar a.active {
-  color: #640ED2; /* Color for the currently selected page */
+  color: #640ED2; /* Example active link color */
+}
+
+.navbar a.active::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -20px; /* Align with the pointer */
+  transform: translateY(-50%);
+  width: 20px;
+  height: 50px;
+  background-color: #9056DB;
+  z-index: 2;
 }
 
 .navbar-closed .navbar-handle {
@@ -107,19 +135,40 @@ body::before {
 }
 
 .content {
-  margin: auto;
-  margin-top: 84px;
-  overflow-y: auto;  width: 1057px;
+  justify-self: center; /* Center content within its grid cell */
+  padding-right: 10vw;
+  margin: auto; /* This will automatically center the content */
+  max-width: 1000px; /* Optional: limit the content width */
+  width: calc(100% - 400px); /* Adjust width calculation as needed */
   grid-column: 1 / 2;
-  padding-right: 10px;
-  overflow-y: auto; /* Enable scrolling for content */
-  height: 100vh; /* Limit height to enforce scrolling */
   position: relative; /* Ensure content is scrollable over the fixed background */
   z-index: 0; /* Ensure content scrolls under the navbar */
 }
 
+@media (max-width: 1000px) { /* Adjust 800px to your specific breakpoint */
+  .main-container {
+    display: flex; /* Use flexbox for easier centering */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+  }
+
+  .content, .navbar {
+    justify-self: stretch; /* Stretch items to fill the container */
+    width: auto; /* Allow content to adjust based on the viewport */
+    max-width: 100%; /* Prevent overflow */
+  }
+}
+
+.content img {
+  max-width: 100%; /* Make images responsive */
+  height: auto; /* Maintain aspect ratio */
+}
+
 .intro {
-  width: 700px;
+  padding-top: 84px;
+  max-width: 700px; /* Maximum width .intro can expand to */
+  width: 90%; /* .intro width relative to its parent container */
+  margin: 0 auto; /* Center .intro within its parent */
 }
 
 .title {
@@ -130,7 +179,6 @@ body::before {
   line-height: normal;
   color: var(--highlight, #640ED2);
 }
-
 .text {
   color: var(--text, #43254E);
   font-size: 18px;

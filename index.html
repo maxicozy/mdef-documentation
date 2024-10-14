@@ -10,19 +10,25 @@
     <link rel="icon" href="images/favicon.svg">
   </head>
   <body>
+    <div class="main-container">
+
     <div class="navbar">
+      <div class="navbar-handle"></div>
+
       <div class="navbar-inner">
-        <a href="index.html">intro</a>
-        <a href="term1/index.html">term 1</a>
+        <a href="#intro" class="nav-link">intro</a>
+        <a href="#term1" class="nav-link">term 1</a>
+        <a href="#about" class="nav-link">about</a>
         <!-- <a href="term2/index.html">Term 2</a>
         <a href="term3/index.html">Term 3</a>
         <a href="master-thesis.html">Master Thesis</a> -->
-        <a href="about.html">about</a>
+
       </div>
-      <div class="navbar-handle"></div>
     </div>
 
     <div class="content">
+
+      <section id="intro">
 
       <div class="intro text">Hi I'm max, <br>
         <br>
@@ -33,11 +39,64 @@
 
       <img src="https://live.staticflickr.com/65535/52242215793_92df54ba7c_k.jpg" alt="MDEF landing" width="800" />
 
+      </section>
+
+      <section id="term1">
+
+        <h1>Term 1</h1>
+
+        <p>
+          This is an example of a list fot documenting each seminar in your page. You can edit it with your own content.
+        </p>
+  
+        <h2>Seminars</h2>
+        <ol style="list-style: none;">
+          <li>Design Studio 01</li>
+          <!-- This is how you can link to another page. Never use absolute paths (starting with /) when linking pages, always relative. -->
+          <li><a href="01-documenting-design.html">Documenting Design</a></li>
+              <ol>
+                  <li>Web design</li>
+                  <li>Reflection</li>
+              </ol>
+          <li>Landing</li>
+          <li>Design Studio Intro Week</li>
+          <li>Machine Paradox</li>
+          <li>Living Wit Your Own Ideas</li>
+          <li>Biology Zero</li>
+          <li>Agriculture Zero</li>
+          <li>Design With Others</li>
+          <li>Extended Intelligences</li>
+          <li>Fundamentals of Digital Fabrication</li>
+        </ol>
+        
+      </section>
+
+      <section id="about">
+
+        <h1>About me</h1>
+
+        <img src="./images/avatar-photo.jpg" alt="Photo of Your name" />
+        <!-- While this is an image from the images folder. Never use absolute paths (starting with /) when linking local images, always relative. -->
+
+        <p>Hi! I am Your name. I am an art director & graphic designer based in New York City working on branding, visual identities, editorial design and web design.</p>
+
+
+        <h2>Previous work</h2>
+
+        <p>I'm a paragraph. Edit the page on Gitlab to add your own text and edit me. I’m a great place for you to tell a story and let your users know a little more about you.​</p>
+
+        <h3>Project A</h3>
+
+        <p>Talking about a specific project I am proud of.</p>
+
+      </section>
+
       <footer>
         <p>Copyright 2024 Maximilian Becht; - Creative Commons Attribution Non Commercial </p>
-        <p>Source code hosted at <a href="https://github.com/maxicozy/mdef-documentation">mdef-documentation</a></p>
+        <p>Source code hosted at <a href="https://github.com/maxicozy/mdef-documentation">github.com/maxicozy/mdef-documentation</a></p>
       </footer> 
 
+    </div>
     </div>
     <script src="script.js"></script>
   </body>
