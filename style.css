@@ -2,9 +2,11 @@ body {
   font-family: sans-serif;
   margin: 0;
   display: grid;  
-  grid-template-columns: auto 200px; /* Content area and navbar */
+  grid-template-columns: auto 1fr; /* Content area and navbar */
   grid-template-rows: 100vh;
-  height:100vh;
+  height: 100vh;
+  align-items: start; /* Align items to the start of the container */
+  max-height: 100vh; /* Adjust based on your layout */
   overflow-x: hidden; /* Prevent scrolling on the body itself */
   overflow-y: auto; /* Allow vertical scrolling */
   flex-direction: row-reverse;
@@ -26,24 +28,18 @@ body::before {
   z-index: -1; /* Ensure it's behind all other content */
 }
 
-.main-container {
-  display: grid;
-  grid-template-columns: auto 1fr; 
-  align-items: start; /* Align items to the start of the container */
-  width: 100%;
-  overflow: visible; /* Step 2: Adjust overflow property */
-}
-
-
 .navbar {
   position: fixed; /* Make navbar fixed */
-  display: flex;
+  transform-origin: center;
   flex-direction: column;
+  justify-content: center;
   grid-column: 2 / 3;
   right: 0; /* Start fully visible */
   width: 200px;
   height: 100vh;
   z-index: 1; /* Ensure navbar is above the fixed background */
+  background: var(--navigation-background, linear-gradient(487deg, rgba(208, 74, 255, 0.24) 8.26%, rgba(230, 209, 238, 0.01) 119.32%));
+
 }
 
 .navbar::after {
@@ -73,9 +69,10 @@ body::before {
   display: flex;
   align-items: center; /* Centers children (links) horizontally in a column layout */
   width: 200px;
-  height: 1024px;
+  height: 50vh;
+  overflow: hidden;
   flex-direction: column;
-  justify-content: center;
+  align-items: flex-start;
   padding-right: 100px;
   color: var(--highlight, #640ED2);
   text-align: right;
@@ -84,7 +81,7 @@ body::before {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  background: var(--navigation-background, linear-gradient(487deg, rgba(208, 74, 255, 0.24) 8.26%, rgba(230, 209, 238, 0.01) 119.32%));
+  transition: transform 0.5s ease; /* Smooth transition for the transform */
 }
 
 .navbar a {
