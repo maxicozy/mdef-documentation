@@ -1,5 +1,4 @@
 body {
-  font-family: sans-serif;
   margin: 0;
   display: grid;  
   grid-template-columns: auto 1fr; /* Content area and navbar */
@@ -27,6 +26,10 @@ body::before {
   background-repeat: repeat;
   z-index: -1; /* Ensure it's behind all other content */
 }
+
+/* section {
+  padding-top: 84px;
+} */
 
 .navbar {
   position: fixed; /* Make navbar fixed */
@@ -113,9 +116,10 @@ body::before {
 }
 
 .content {
-  justify-self: center; /* Center content within its grid cell */
-  margin: auto; /* This will automatically center the content */
-  width: calc(100% - 400px); /* Adjust width calculation as needed */
+  box-sizing: border-box;
+  height: 100vh;
+  padding: 84px; /* This will automatically center the content */
+  width: calc(100vw - 250px); /* Adjust width calculation as needed */
   grid-column: 1 / 2;
   position: relative; /* Ensure content is scrollable over the fixed background */
   z-index: 0; /* Ensure content scrolls under the navbar */
@@ -127,17 +131,16 @@ body::before {
 }
 
 .intro {
-  padding-top: 84px;
-  max-width: 700px; /* Maximum width .intro can expand to */
-  width: 90%; /* .intro width relative to its parent container */
-  margin: 0 auto; /* Center .intro within its parent */
+  max-width: 590px; /* Maximum width .intro can expand to */
+  width: 100%; /* .intro width relative to its parent container */
+  margin-bottom: 20px; /* Add some space below the intro text */
 }
 
 /* Wrapper for the iframe to maintain aspect ratio */
 .iframe-wrapper {
   position: relative;
   width: 100%; /* Fill the available container width */
-  padding-bottom: 68.75%; /* Aspect ratio: 16:9 (height/width * 100) */
+  padding-bottom: 75%; /* Aspect ratio: 16:9 (height/width * 100) */
   height: 0;
   overflow: hidden;
 }
@@ -153,10 +156,21 @@ body::before {
 }
 
 .title {
+  padding-top: 84px;
   font-family: Inter;
-  font-size: 42px;
+  font-size: 28px;
   font-style: normal;
   font-weight: 700;
+  line-height: normal;
+  color: var(--highlight, #640ED2);
+}
+
+.subtitle {
+  padding-left: 21px;
+  font-family: Inter;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 500;
   line-height: normal;
   color: var(--highlight, #640ED2);
 }
