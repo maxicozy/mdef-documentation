@@ -9,10 +9,25 @@ body {
   max-height: 100vh; /* Adjust based on your layout */
   overflow-x: hidden; /* Prevent scrolling on the body itself */
   overflow-y: auto; /* Allow vertical scrolling */
+  background-color: #fff;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Adjust the brightness of all images */
+img {
+  filter: brightness(0.8); /* Adjust the value as needed (0.8 means 80% brightness) */
+}
+
+a:hover {
+  color: #640ED2;
+}
+
+a {
+  color: #9056DB;
+  text-decoration: none; /* Optional: removes underline from links */
 }
 
 body::before {
@@ -24,9 +39,7 @@ body::before {
   bottom: 0;
   background-image: url("data:image/svg+xml,%3Csvg width='15' height='15' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='14' y='14' width='1' height='1' fill='%23ccc' fill-opacity='1' /%3E%3C/svg%3E");
   background-repeat: repeat;
-  background-color: #fff;
-
-  z-index: -1; /* Ensure it's behind all other content */
+  z-index: -1;
 }
 
 .navbar {
@@ -72,7 +85,6 @@ body::before {
   transform: translateY(-50%); /* Adjust for exact centering */
   width: 48px; /* Width of the pointer */
   height: 32px; /* Height of the pointer, adjust based on design */
-  background-color: #9056DB; /* Purple color, adjust as needed */
   z-index: 2; /* Ensure it's above the navbar content */
   background: var(--highlight, #640ED2);
 }
@@ -83,7 +95,7 @@ body::before {
   top: 15%;
   width: 10px;
   height: 70vh;
-  background-color: #640ED2;
+  background: var(--highlight, #640ED2);
   z-index: 1000; /* Above the navbar content */
 }
 
@@ -165,7 +177,7 @@ body::before {
 #landing .date {
   font-size: 14px;
   font-weight: 300;
-  color: #43254E;
+  color: var(--text, #2d1835);
   margin-top: 8px; 
   display: block; 
 }
@@ -188,8 +200,8 @@ body::before {
 #designstudio .date {
   font-size: 14px;
   font-weight: 300;
-  color: #43254E;
-  margin-top: 8px; 
+  color: var(--text, #2d1835);
+  margin-top: 0px; 
   display: block; 
 }
 
@@ -221,7 +233,7 @@ body::before {
 
 p {
   margin: 0;
-  color: var(--text, #43254E);
+  color: var(--text, #2d1835);
   font-size: 14px;
   font-family: Inter;
   font-weight: 400;
