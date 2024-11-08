@@ -247,6 +247,10 @@ p {
   letter-spacing: -0.18px;
 }
 
+.italic {
+  font-style: italic;
+}
+
 .date {
   font-size: 14px;
   font-family: 'Inter', sans-serif; /* Apply the Inter font */
