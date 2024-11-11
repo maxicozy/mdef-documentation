@@ -20,9 +20,8 @@
         <a href="#term1">term 1</a>
         <a href="#landing" class="subpage">landing</a>
         <a href="#designstudio" class="subpage">design studio</a>
-        <a href="#documentation" class="subpage">documentation</a>
-        <a href="#digitalfabrication" class="subpage">digital fabrication</a>
         <a href="#machineparadox" class="subpage">machine paradox</a>      
+        <a href="#livingwithideas" class="subpage">living with your own ideas</a>
         <a href="#about">about</a>
       </div>
     </div>
@@ -153,17 +152,8 @@
             <br><br>
             At first, it was hard for me to engage in the prosthesis we prototyped during the week. In the past, I needed a clear idea of what I wanted to achieve by building a prototype. The different prostheses we built during <span class="italic">Living with Your Own Ideas</span> had the goal of building something to experiment with the notion of self, encouraging a shift in one’s own perspective. I quite enjoyed this after I got over my initial difficulties.
           </p>
-
         </section>
-    
-        <section class="subsection" id="documentation">
-          <span class="subtitle">documenting design</span>
-        </section>
-    
-        <section class="subsection" id="digitalfabrication">
-          <span class="subtitle">digital fabrication</span>
-        </section>
-    
+        
         <section class="subsection" id="machineparadox">
           <div style="grid-column: 1 / 3;">
             <span style="display: block;" class="subtitle">machine paradox</span>
@@ -177,7 +167,7 @@
           </div>
           <div style="grid-column: 3 / 6;">
             <p>
-
+              
               The <span class="italic">Machine Paradox</span> workshop consisted of two intense weeks with our noses deep in electronics. In the first week, 
               <span class="highlight">we disassembled, cataloged, and examined </span>the internal workings of a <span class="highlight">discarded electronic device.</span> In the second week, we <span class="highlight">reassembled the parts </span> into a “Paradox machine” to give them a new life.
             </p>
@@ -195,12 +185,12 @@
             <div style="height: 42px;"></div>
             <img src="images/machine-paradox/IMG_0080.jpeg" alt="Ramon and Bélen handling parts of the printer" style="filter: brightness(0.75)">
             <div style="height: 42px;"></div>
-
+            
             <p>
               The second week we spent on assembling a useless machine. The goal was to use parts of the basic structure of the Formlabs, including the mechanism that detects when the cover is open for safety reasons, to <span class="highlight">make a machine that “parties” with itself while it is closed</span>, but when it detects it was being <span class="highlight">opened, it would shut down</span>, not allowing meagre humans to take part in its fun activities. <br><br>
-              We couldn’t use the Barduino board, because the sensitive Galvo motors would react to the frequency of the PWM pulses and flicker about. Instead, we ended up with an Adafruit Feather ESPS3, which sports two Digital to Analog Converters (DAC). <br><br>
+              We couldn’t use the Barduino board, because the sensitive Galvo motors would react to the frequency of the PWM pulses and flicker about. Instead, we ended up with an Adafruit Feather ESP32-S3, which sports two Digital to Analog Converters (DAC). <br><br>
             </p>
-
+            
           </div>
           <div style="grid-column: 1 / 8; margin-top: -42x">
             <img src="images/machine-paradox/schematic.png" alt="Wiring schematic of the party box" style="filter: brightness(1); transform: translate(0, -210px);">
@@ -227,10 +217,10 @@
             <p>
               Controlling the Stepper with an H-Bridge to move the disco ball up and down to shake it a bit was fairly straight forward.<br><br>
             </p>
-
+            
           </div>
           <div style="grid-column: 6 / 9; transform: translate(0, -168px);">
-
+            
             <p>
               We couldn’t figure out how to communicate with the OLED screen that was built into the Form 1, so we substituted it for a simple LCD screen that was sufficient to display our two different messages depending on the state of the Printer: “party in progress…” for when the printer is closed, and “no humans allowed” for when it is open. <br><br>
             </p>
@@ -239,25 +229,91 @@
           <div style="grid-column: 1 / 3; transform: translate(0, -84px);">
             <p>
               <a href="resources/FOMOX.pdf" target="_blank" rel="noopener noreferrer">Here </a>you can take a look at our final presentation of the project. <br><br>
-
-                This workshop was a pretty intense experience. Taking apart a high-tec machine like the Formlabs has to be exciting of course, but using most of its parts to build another completely different machine was something I have never done before and enjoyed a lot. <br><br>
-
-                The experience wasn’t only great because of the workshop concept, but also because of my classmates and teachers. Inside of my team, I felt that we were all eager to experiment and understand, motivated and most of the time we managed to share the work somewhat efficiently. <br><br>
-
-                To watch the other groups develop their projects was very enjoyable as well and i am a big fan of the other useless machines.
-
-                The amount of teachers and their helpfulness, good moods and knowledge contributed greatly to the success of the workshop. With every question, doubt or idea I had, I feel like I always got very attentive support and I think I learned a lot. <br><br>
-           </p>
+              
+              This workshop was a pretty intense experience. Taking apart a high-tec machine like the Formlabs has to be exciting of course, but using most of its parts to build another completely different machine was something I have never done before and enjoyed a lot. <br><br>
+              
+              The experience wasn’t only great because of the workshop concept, but also because of my classmates and teachers. Inside of my team, I felt that we were all eager to experiment and understand, motivated and most of the time we managed to share the work somewhat efficiently. <br><br>
+              
+              To watch the other groups develop their projects was very enjoyable as well and i am a big fan of the other useless machines.
+              
+              The amount of teachers and their helpfulness, good moods and knowledge contributed greatly to the success of the workshop. With every question, doubt or idea I had, I feel like I always got very attentive support and I think I learned a lot. <br><br>
+            </p>
           </div>
           <div style="grid-column: 3 / 9; transform: translate(0, -84px);" class="iframe-wrapper">
             <iframe src="https://www.youtube.com/embed/JQ4CSQMGiOY" title="FOMOX - Machine Paradox MDEF 2024-25" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
-  
+
         </section>
+
+        <section class="subsection" id="livingwithideas">
+          <div style="grid-column: 1 / 4;">
+            <span style="display: block;" class="subtitle">living with your own ideas</span>
+          </div>
+          <div style="grid-column: 1 / 3;"style="display: block;" class="date" >28. - 31. oct 24
+            <div style="height: 42px"></div>
+            <p>
+              <span class="italic">Living with your own ideas</span> was, at first, a little strange experience for me. I caught a cold the weekend before, so I missed the introduction and only attended half of the classes. In the part that I did participate in, Thomas Thwaites elaborated on some of his projects for us: building a terrible yet hilarious toaster from absolute scratch and living as a goat in the Swiss Alps for several days. Insane, ridiculous, and absolutely brilliant. Then we went on to read the <span class="italic">Companion Species Manifesto</span> by Donna Haraway. These concepts, or at least profoundly thinking about them, were entirely new to me. <br><br>
+
+              With the prosthesis, especially the second one, I struggled a bit at first. Coming up with an idea that I like quickly is hard enough, but in the beginning, I also had my problems with seeing the purpose of these tasks. Only later, after having had some time to think, I started to like the topics that have been introduced in this workshop a lot. They presented to me a way of thinking that feels free and progressive, encouraging close examination and considering different perspectives, experimenting with identity and self-expression.
+            </p>
+          </div>
+          <div class="subcolumns-6" style="grid-column: 3 / 9;">
+            <div style="grid-column: 1 / 4;">
+              <p>
+                <span style="font-weight: 700;">Prosthesis 1 - Becoming the best version of ourselves</span><br><br>
+                I would not say I am a very lazy person, but I think few things are as hard for me as leaving the bed in the morning. However much I enjoy my life or not, the cozy warm bed always feels like the better option. Often I think about how much happier, more productive and downright better a person I were, if I could start every day with energy and ease. Hence, my prothesis shall provide that!<br><br>
+                It’s a little chip that is injected under the skin. Every morning, like an alarm clock, it will pump an amount of adrenaline into my blood that would wake a gorilla.
+              </p>
+            </div>
+            <div class="image" style="grid-column: 4 / 7;">
+              <br><br>
+              <img src="images/living-with-your-own-ideas/prosthesis-01.gif" alt="me waking up frantically" style="filter: brightness(1)">
+            </div>
+            <div class="image" style="grid-column: 1 / 3;">
+              <img src="images/living-with-your-own-ideas/chip-left.png" alt="me waking up frantically" style="filter: brightness(1)">
+            </div>
+            <div class="image" style="grid-column: 3 / 5;">
+              <img src="images/living-with-your-own-ideas/chip-front.png" alt="me waking up frantically" style="filter: brightness(1)">
+            </div>
+            <div class="image" style="grid-column: 5 / 7;">
+              <img src="images/living-with-your-own-ideas/chip-right.png" alt="me waking up frantically" style="filter: brightness(1)">
+            </div>
+          </div>
+          <div class="image" style="grid-column: 1 / 3;">
+            <br><br>
+            <img src="images/living-with-your-own-ideas/prosthesis-02.gif" alt="me waking up frantically" style="filter: brightness(1)">
+          </div>
+          <div class="subcolumns-6" style="grid-column: 3 / 9;">
+
+            <div style="grid-column: 1 / 4;">
+              <p>
+                <span style="font-weight: 700;">Prosthesis 2 - Becoming something non-human</span><br><br>
+                This was difficult at first, I think I have never wanted to be something non-human before.
+                My approach here was to get inspired by the considerable amount of e-waste that occupies most of our classroom. I just started crafting something from scraps I liked and thought about a story as I went. <br><br>
+                I ended up with a device that would connect my brain to the consciousness of nature itself. I don’t know what that would mean, but it’s an experience I wouldn’t miss out on.
+              </p>
+            </div>
+            <div class="image" style="grid-column: 4 / 7;">
+              <img src="images/living-with-your-own-ideas/one-with-nature.png" alt="me waking up frantically" style="filter: brightness(1)">
+            </div>
+            <div class="image" style="grid-column: 1 / 3;">
+              <img src="images/living-with-your-own-ideas/prototype-02-left.png" alt="me waking up frantically" style="filter: brightness(1)">
+            </div>
+            <div class="image" style="grid-column: 3 / 5;">
+              <img src="images/living-with-your-own-ideas/prototype-02-front.png" alt="me waking up frantically" style="filter: brightness(1)">
+            </div>
+            <div class="image" style="grid-column: 5 / 7;">
+              <img src="images/living-with-your-own-ideas/prototype-02-right.png" alt="me waking up frantically" style="filter: brightness(1)">
+            </div>
+          </div>
+          
+
+        </section>
+
       </section>
-
+      
       <section id="about">
-
+        
         <h1>About me</h1>
 
         <img src="./images/avatar-photo.jpg" alt="Photo of Your name" />

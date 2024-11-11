@@ -50,7 +50,7 @@ body::before {
   grid-column: 9 / 12;
   right: 0; /* Start fully visible */
   top: 0;
-  width: 250px;
+  width: 300px;
   height: 100vh;
   z-index: 1; /* Ensure navbar is above the fixed background */
   background: 
@@ -67,7 +67,7 @@ body::before {
   display: flex;
   align-items: flex-end; /* Centers children (links) horizontally in a column layout */
   justify-content: center;
-  width: 250px;
+  width: 300px;
   height: 40vh;
   overflow: hidden;
   flex-direction: column;
@@ -185,7 +185,6 @@ body::before {
   grid-template-columns: repeat(8, 1fr); 
   grid-column-gap: 42px; /* Gutter between columns */
   grid-row-gap: 84px; /* Gutter between rows */
-  margin-top: 20px;
   margin-bottom: 84px
 }
 
@@ -209,6 +208,28 @@ body::before {
   max-width: 100%;
   height: auto;
 } 
+
+#livingwithideas {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr); 
+  grid-column-gap: 42px; /* Gutter between columns */
+  grid-row-gap: 84px; /* Gutter between rows */
+  margin-bottom: 84px
+}
+
+#livingwithideas .image {
+  height: auto;
+  max-width: 100%;
+}
+
+#livingwithideas .subcolumns-6 {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); 
+  grid-column-gap: 42px; /* Gutter between columns */
+  grid-row-gap: 42px; /* Gutter between rows */
+  margin-bottom: 84px
+
+}
 
 .title {
   font-family: 'Inter', sans-serif; /* Apply the Inter font */
