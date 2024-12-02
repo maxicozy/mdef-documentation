@@ -152,6 +152,26 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    const hoverGifs = document.querySelectorAll('.hover-gif');
+
+  hoverGifs.forEach(img => {
+        const gifSrc = img.getAttribute('data-gif');
+        const staticSrc = img.getAttribute('src');
+
+    img.addEventListener('mouseover', () => {
+            img.setAttribute('src', gifSrc);
+      
+        });
+
+    img.addEventListener('mouseout', () => {
+            img.setAttribute('src', staticSrc);
+      
+        });
+    });
+  });
+
+
 
 
 

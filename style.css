@@ -231,6 +231,17 @@ body::before {
 
 }
 
+.hover-gif {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hover-gif:hover {
+  content: url("images/design-studio/shared-design-space-compressed.gif");
+}
+
 .title {
   font-family: 'Inter', sans-serif; /* Apply the Inter font */
   font-size: 24px;
