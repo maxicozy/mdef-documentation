@@ -249,7 +249,6 @@ body::before {
   grid-template-columns: repeat(4, 1fr); 
   grid-column-gap: 42px; /* Gutter between columns */
   grid-row-gap: 42px; /* Gutter between rows */
-  margin-bottom: 84px
 
 }
 
