@@ -252,6 +252,19 @@ body::before {
 
 }
 
+#agrizero {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr); 
+  grid-column-gap: 42px; /* Gutter between columns */
+  grid-row-gap: 84px; /* Gutter between rows */
+  margin-bottom: 84px
+}
+
+#agrizero .image {
+  height: auto;
+  max-width: 100%;
+}
+
 .hover-gif {
   display: block;
   width: 100%;
