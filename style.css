@@ -180,7 +180,7 @@ body::before {
   height: auto;
 } 
 
-#designstudio {
+#designstudio1 {
   display: grid;
   grid-template-columns: repeat(8, 1fr); 
   grid-column-gap: 42px; /* Gutter between columns */
@@ -188,11 +188,26 @@ body::before {
   margin-bottom: 84px
 }
 
-#designstudio .image {
+#designstudio2 .image {
   grid-column: 5 / 9; 
   max-width: 100%;
   height: auto;
 } 
+
+#designstudio2 {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr); 
+  grid-column-gap: 42px; /* Gutter between columns */
+  grid-row-gap: 84px; /* Gutter between rows */
+  margin-bottom: 84px
+}
+
+#designstudio1 .image {
+  grid-column: 5 / 9; 
+  max-width: 100%;
+  height: auto;
+} 
+
 
 #machineparadox {
   display: grid;
