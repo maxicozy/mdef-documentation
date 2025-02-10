@@ -63,12 +63,12 @@ body::before {
   padding: 10px 0px 10px 20px;
   z-index: 3; /* Ensure it's above the navbar content */
   position: relative;
-  max-height: 500px;
+  max-height: 700px;
   display: flex;
   align-items: flex-end; /* Centers children (links) horizontally in a column layout */
   justify-content: center;
   width: 300px;
-  height: 40vh;
+  height: 50vh;
   overflow: hidden;
   flex-direction: column;
   color: var(--highlight, #640ED2);
@@ -292,6 +292,28 @@ body::before {
   height: auto;
   max-width: 100%;
 }
+
+#communicatingideas {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr); 
+  grid-column-gap: 42px; /* Gutter between columns */
+  grid-row-gap: 84px; /* Gutter between rows */
+  margin-bottom: 84px
+}
+
+#collectiveintelligence {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr); 
+  grid-column-gap: 42px; /* Gutter between columns */
+  grid-row-gap: 84px; /* Gutter between rows */
+  margin-bottom: 84px
+}
+
+#collectiveintelligence .image {
+  height: auto;
+  max-width: 100%;
+}
+
 
 .hover-gif {
   display: block;
