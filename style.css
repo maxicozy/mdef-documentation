@@ -293,6 +293,36 @@ body::before {
   max-width: 100%;
 }
 
+#livingmaterials{
+  display: grid;
+  grid-template-columns: repeat(8, 1fr); 
+  grid-column-gap: 42px; /* Gutter between columns */
+  grid-row-gap: 84px; /* Gutter between rows */
+  margin-bottom: 84px
+}
+
+#livingmaterials .image {
+  height: auto;
+  max-width: 100%;
+}
+
+#livingmaterials .subcolumns-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  grid-column-gap: 21px; /* Gutter between columns */
+  grid-row-gap: 42px; /* Gutter between rows */
+  margin-bottom: auto;
+}
+
+#livingmaterials .subcolumns-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  grid-column-gap: 42px; /* Gutter between columns */
+  grid-row-gap: 42px; /* Gutter between rows */
+  margin-bottom: auto;
+}
+
+
 #communicatingideas {
   display: grid;
   grid-template-columns: repeat(8, 1fr); 
@@ -321,6 +351,7 @@ body::before {
   grid-row-gap: 42px; /* Gutter between rows */
   margin-bottom: auto;
 }
+
 
 #collectiveintelligence .subcolumns-2 {
   display: grid;
