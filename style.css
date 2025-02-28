@@ -155,6 +155,79 @@ body::before {
   height: 0;
 }
 
+/* Code Block Styling */
+.code-block {
+  display: block;
+  background-color: #f8f5fd;
+  border-left: 3px solid #9056DB;
+  border-radius: 4px;
+  padding: 42px;
+  overflow-x: auto;
+  font-family: 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #562f67;
+  box-shadow: 0 2px 8px rgba(100, 14, 210, 0.08);
+}
+
+/* Inline code styling */
+.code-inline {
+  background-color: #f8f5fd;
+  border-radius: 3px;
+  padding: 2px 4px;
+  font-family: 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+  color: #640ED2;
+}
+
+/* Code block with line numbers */
+.code-block-numbered {
+  counter-reset: line;
+  padding-left: 0;
+}
+
+.code-block-numbered code {
+  display: block;
+  position: relative;
+  padding-left: 32px;
+  line-height: 1.5;
+}
+
+.code-block-numbered code::before {
+  counter-increment: line;
+  content: counter(line);
+  position: absolute;
+  left: 0px;
+  width: 24px;
+  text-align: right;
+  color: #9056DB;
+  opacity: 0.6;
+  font-size: 12px;
+}
+
+/* Dark mode code block option */
+.code-block-dark {
+  background-color: #33204b;
+  color: #f8f5fd;
+  border-left: 3px solid #9056DB;
+}
+
+/* Keywords and special elements styling */
+.code-keyword {
+  color: #640ED2;
+  font-weight: 500;
+}
+
+.code-string {
+  color: #ca6e11;
+}
+
+.code-comment {
+  color: #78448b;
+  font-style: italic;
+  opacity: 0.7;
+}
+
 /* Style for the iframe */
 .iframe-wrapper iframe {
   position: absolute;
@@ -339,7 +412,12 @@ body::before {
   margin-bottom: 84px
 }
 
-#situatedpractices {
+#collectiveintelligence .image {
+  height: auto;
+  max-width: 100%;
+}
+
+#extendedintelligence2 {
   display: grid;
   grid-template-columns: repeat(8, 1fr); 
   grid-column-gap: 42px; /* Gutter between columns */
@@ -347,9 +425,17 @@ body::before {
   margin-bottom: 84px
 }
 
-#collectiveintelligence .image {
+#extendedintelligence .image {
   height: auto;
   max-width: 100%;
+}
+
+#situatedpractices {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr); 
+  grid-column-gap: 42px; /* Gutter between columns */
+  grid-row-gap: 84px; /* Gutter between rows */
+  margin-bottom: 84px
 }
 
 #collectiveintelligence .subcolumns-3 {
