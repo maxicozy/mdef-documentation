@@ -270,6 +270,7 @@ body::before {
 }
 
 .subsection {
+  display: grid;
   grid-column: 1 / 11; /* Span all columns */
   padding-left: 21px;
   margin-top: 21px;
