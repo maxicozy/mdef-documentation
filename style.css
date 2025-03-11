@@ -438,24 +438,6 @@ body::before {
   margin-bottom: 84px
 }
 
-#collectiveintelligence .subcolumns-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); 
-  grid-column-gap: 21px; /* Gutter between columns */
-  grid-row-gap: 42px; /* Gutter between rows */
-  margin-bottom: auto;
-}
-
-
-#collectiveintelligence .subcolumns-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); 
-  grid-column-gap: 42px; /* Gutter between columns */
-  grid-row-gap: 21px; /* Gutter between rows */
-  margin-bottom: auto;
-}
-
-
 .hover-gif {
   display: block;
   width: 100%;
@@ -491,6 +473,32 @@ body::before {
   grid-column: 1 / 11; /* Span all columns */
   padding-left: 21px;
   margin-top: 21px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr); 
+  grid-column-gap: 42px; /* Gutter between columns */
+  grid-row-gap: 84px; /* Gutter between rows */
+  margin-bottom: 84px
+}
+
+.subsection .subcolumns-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  grid-column-gap: 42px; /* Gutter between columns */
+  grid-row-gap: 21px; /* Gutter between rows */
+  margin-bottom: auto;
+}
+
+.subsection .subcolumns-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  grid-column-gap: 21px; /* Gutter between columns */
+  grid-row-gap: 42px; /* Gutter between rows */
+  margin-bottom: auto;
+}
+
+.subsection .image{
+  max-width: 100%;
+  height: auto;
 }
 
 p {
