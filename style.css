@@ -43,6 +43,15 @@ body::before {
   z-index: -1;
 }
 
+h3 {
+  font-family: 'Inter', sans-serif; /* Apply the Inter font */
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: var(--text, #562f67);
+}
+
 .navbar {
   position: fixed; /* Make navbar fixed */
   display: flex; /* Make navbar a flex container */
