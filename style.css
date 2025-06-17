@@ -454,3 +454,95 @@ footer p {
   border: 0;
 }
 
+/* ...existing code... */
+
+/* Mobile breakpoints for CHOP page */
+@media screen and (max-width: 768px) {
+  .chop-body {
+    padding-top: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .chop-container {
+    width: 100%;
+    min-width: unset;
+    max-width: 100%;
+  }
+
+  .chop-content {
+    gap: 30px;
+  }
+
+  .chop-title {
+    font-size: 36px;
+    line-height: 1.1;
+  }
+
+  .chop-subtitle {
+    font-size: 14px;
+  }
+
+  .chop-video {
+    margin: 30px 0;
+  }
+
+  .chop-text p {
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .chop-body {
+    padding-top: 30px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .chop-content {
+    gap: 24px;
+  }
+
+  .chop-title {
+    font-size: 28px;
+  }
+
+  .chop-subtitle {
+    font-size: 13px;
+  }
+
+  .chop-video {
+    margin: 24px 0;
+  }
+
+  .chop-text p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .chop-body {
+    padding-top: 24px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .chop-title {
+    font-size: 24px;
+  }
+
+  .chop-subtitle {
+    font-size: 12px;
+  }
+
+  .chop-text p {
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+}
+
+/* ...existing code... */
