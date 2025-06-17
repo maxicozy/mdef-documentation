@@ -454,9 +454,6 @@ footer p {
   border: 0;
 }
 
-/* ...existing code... */
-
-/* Mobile breakpoints for CHOP page */
 @media screen and (max-width: 1500px) {
   .chop-body {
     padding-top: 40px;
@@ -465,9 +462,9 @@ footer p {
   }
 
   .chop-container {
-    width: 100%;
+    width: 70vw; /* Changed from 100% to maintain narrower width on larger screens */
     min-width: unset;
-    max-width: 100%;
+    max-width: 800px; /* Added max-width to prevent it from getting too wide */
   }
 
   .chop-content {
@@ -494,11 +491,25 @@ footer p {
   }
 }
 
+/* Tablet breakpoint */
+@media screen and (max-width: 1200px) {
+  .chop-container {
+    width: 85vw;
+    max-width: 700px;
+  }
+}
+
 @media screen and (max-width: 920px) {
   .chop-body {
-    padding-top: 30px;
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-top: 40px; /* Fixed: added 'px' unit */
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .chop-container {
+    width: 100%; /* Full width only on mobile */
+    min-width: unset;
+    max-width: 100%;
   }
 
   .chop-content {
@@ -524,11 +535,17 @@ footer p {
   }
 }
 
-@media screen and (max-width: 480) {
+@media screen and (max-width: 480px) {
   .chop-body {
     padding-top: 24px;
-    padding-left: 36px;
-    padding-right: 36px;
+    padding-left: 16px; /* Reduced padding for very small screens */
+    padding-right: 16px;
+  }
+
+  .chop-container {
+    width: 100%;
+    min-width: unset;
+    max-width: 100%;
   }
 
   .chop-title {
@@ -544,5 +561,3 @@ footer p {
     margin-bottom: 14px;
   }
 }
-
-/* ...existing code... */
