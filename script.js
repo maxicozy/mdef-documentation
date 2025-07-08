@@ -170,10 +170,3 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
   });
-
-
-
-
-
-
-
