@@ -1803,6 +1803,62 @@
           </p>
 
           <div style="grid-column: 1 / 2;">
+            <span style="display: block;  margin-top: 8px;" class="date" >03. jun</span>
+          </div>
+
+          <div style="grid-column: 2 / 5;" class="subsection subcolumns-3">
+            <p style="grid-column: 2/4;">
+              <span style="font-weight: 700;">Solar Server</span><br><br>
+              Taking inspiration from Low-Tech Magazine, I have developed my own version of a solar-powered server. The server acts as both an infrastructural prototype for the platform as well as a symbol, challenging the always-on, cloud-dependent logic of most online platforms. The tools and methods pertaining to the project are documented on the website hosted on the server.<br><br>
+              To give the project a base of operations for the time being, I arranged with Cesca—who works with the Espai Germanetes Association—to host a solar server in the community garden. Once Wi-Fi is installed on-site, I’ll set up the server to host both the garden’s website and a prototype of the chop platform.
+            </p>
+            <div style="grid-column: 1 / 4;">
+              <img src="images/design-studio/Chop_Solar-Server.png" alt="Solar Server" style="filter: brightness(1)">
+            </div>
+          </div>
+          <div style="grid-column: 5 / 8;">
+            <img src="images/design-studio/Chop_Solar-Server_back.png" alt="Solar Server Back" style="filter: brightness(1)">
+            <div style="height: 21px;"></div>
+            <p>
+              One of the first pieces published on the CHOP site will document the gray water filtration system we’re developing with the neighboring school. This will offer a practical example of the platform’s approach that connects shared infrastructure and low-tech autonomy.<br><br>
+
+              I decided to create a design without a battery. This greatly reduces complexity and environmental impact. Following the shape of the solar panel that I acquired, forgoing the battery also allowed me to develop a clean design, housing all the components within the solar panel itself. The panel needs only sun and Wi-Fi to host a website on the Internet.<br><br>
+
+              The server downtime that naturally follows the design decisions I took implies that, in the future, it will be preferable to develop a feature that allows offline reading, similar to the approach that Low-Tech Magazine also employs.
+            </p>
+          </div>
+
+          <p style="grid-column: 1 / 3;">
+            <span style="font-weight: 600;">Hardware</span><br><br>
+            The hardware setup is minimal:<br><br>
+
+            - 10W 12V Solar Panel<br>
+            - 9–36V to 5V DC-to-DC Converter<br>
+            - Raspberry Pi Zero 2W<br><br>
+
+            The wiring is straightforward: the solar panel’s power output connects to the converter, which in turn powers the Raspberry Pi.<br><br>
+
+            Two laser-cut wooden boards are used to mount the Raspberry Pi and the converter within the back of the panel. 3D-printed channels help organize the layout neatly.<br><br>
+
+            To seal the back of the panel, I laser-cut a thick acrylic sheet to the right size and used a 3D-printed stencil to apply a consistent silicone seal. This creates a waterproof enclosure that accommodates the irregularities between the solar panel’s frame and the acrylic.
+          </p>
+          <div style="grid-column: 3 / 9;">
+            <img src="images/design-studio/Chop_Server-Construction.png" alt="Solar Server" style="filter: brightness(1)">
+          </div>
+          <div style="grid-column: 2 / 5;">
+            <img src="images/design-studio/Chop_Server-Construction-2.png" alt="Solar Server" style="filter: brightness(1)">
+          </div>
+          <p style="grid-column: 5 / 7;">
+            <span style="font-weight: 600;">Software</span><br><br>
+            The Raspberry Pi runs a lightweight, headless 32-bit Raspbian OS, accessible via SSH. Using NGINX — chosen for its low memory footprint — the Pi serves a static HTML website locally.<br><br>
+                      
+            To make it accessible on the Internet, I configured a Cloudflare tunnel and, using Cloudflare DNS, I connected it to a custom domain: [www.chop-solar.net](http://www.chop-solar.net/).<br><br>
+                      
+            Website updates are managed through Git. When updates are pushed to the repository, the server automatically syncs, using shell scripts to regularly check for changes and reload content on the fly. This allows for reliable maintenance without needing physical access to the device.
+          </p>
+
+
+          <div style="grid-column: 1 / 2;">
             <span style="display: block;  margin-top: 8px;" class="date" >13. jun</span>
           </div>
 
