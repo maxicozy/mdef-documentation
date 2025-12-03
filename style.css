@@ -121,6 +121,10 @@ h3 {
   line-height: 42px;
 }
 
+.navbar-inner a.subpage-2 {
+  padding-right: 20px;
+}
+
 .subpage {
   padding-right: 10px;
   line-height: 28px !important;
@@ -310,6 +314,19 @@ h3 {
 .subsection .image{
   max-width: 100%;
   height: auto;
+}
+
+.year-section {
+  padding-top: 84px;
+  margin-bottom: 0;
+}
+
+.year-title {
+  display: block;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--highlight, #640ED2);
+  text-transform: lowercase;
 }
 
 p {
