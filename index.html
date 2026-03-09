@@ -41,6 +41,8 @@
         <a href="#year2">year 2</a>
         <a href="#term1-y2" class="subpage">term 1</a>
         <a href="#businessinno" class="subpage subpage-2">business innovation</a>
+        <a href="#term2-y2" class="subpage">term 2</a>
+        <a href="#electronicsdesign" class="subpage subpage-2">electronics design</a>
         <a href="#about">about</a>
       </div>
     </div>
@@ -1990,6 +1992,70 @@
             Output is print-ready filament, already on a (reused) spool for FDM printers (1.75 mm). We start with PLA, then add PETG, and possibly ABS. Typical recipe blends recycled scraps with a small percentage of commercial pellets for strength and consistency. Labs get what they actually need: usable filament at a good price that works perfectly fine for most usecases, plus transparent stats on the loop they helped close.
           </p>
         </section>
+
+        </section>
+
+        <section id="term2-y2" class="mainsection">
+          <span class="title">term 2</span>
+          <span class="date" style="margin-top: 8px;">jan - mar 26</span> <br>
+
+          <section class="subsection" id="electronicsdesign">
+            <div style="grid-column: 1 / 4;">
+              <span style="display: block;" class="subtitle">electronics design</span>
+              <span style="display: block; margin-top: 8px;" class="date">25. feb - 4. mar 26</span>
+            </div>
+            <p style="grid-column: 1 / 3;">
+              In the electronics design course we got a thoroughly deep introduction on electronic circuits and components, all the way to starting to make our own PCB designs within the first couple of hours.<br><br> 
+              Since I’m in need of a good LiPo-Battery BMS for the Boat of <a href="https://www.linkedin.com/company/iaac-engineering-club/posts/?feedView=all&viewAsMember=true">Node Engineering Club</a>, my goal for the Electronics Design & Production courses is to use this opportunity to create one myself.
+            </p>
+            <p style="grid-column: 3 / 5;">
+              As a warmup task, we drew a little schematic of a simple circuit. Fusion360 is my main 3D modeling program, and I had never used it for planning circuits, so for the warmup task I thought I’d give it a go.
+            </p>
+            <div class="image" style="grid-column: 5 / 9;">
+              <img src="images/electronics-design/Bildschirmfoto 2026-02-26 um 11.23.22.png" alt="Simple Schematic done in Fusion360" style="filter: brightness(1.1)">
+            </div>
+            <div class="image" style="grid-column: 1 / 9;">
+              <img src="images/electronics-design/Bildschirmfoto 2026-03-06 um 15.17.14.png" alt="Full BMS KiCad Schematic" style="filter: brightness(1.1)">
+            </div>
+            <p style="grid-column: 2 / 4;">
+              Since I didn’t find Fusions’ Electronics department very intuitive, I switched back to KiCad which I had used a bit previously. Researching on how to do the BMS, I quickly found a chip called BQ769 which seemed to be exactly what I needed. I started wiring it up according to the <a href="https://www.ti.com/lit/ds/symlink/bq76940.pdf?ts=1772176955989" target="_blank">Datasheet</a> with the ATtiny3226 as a companion controller, added a MOSFET for overcharge protection, a Current Sense Resistor and the Thermistor that the BQ769 has a designated pin for.
+            </p>
+            <p style="grid-column: 4 / 6;">
+              I also added an LED that indicates power on the ATtiny, and since I wanted to be able to program the ATtiny through USB C, as well as communicate with the main OBC of the Boat through Serial, so I added a USB to Serial Interface to the schematic aswell. In the Screenshot, there is a Micro USB port with a MCP2221A on the top left, and on the top right there is a USB C port with the CP2102N USB to Serial interface since I was looking at both options.
+            </p>
+            <p style="grid-column: 6 / 8;">
+              From what I understand, I’d be able to safely power the ATtiny seperately between the 4S LiPo Balance Lead and the USB programming interface using Schottky Diodes on each power input to isolate the circuits, but I will need to confirm this. <br><br>
+              Unfortunately, after finishing the schematic and starting with the layout, I gradually figured out that the footprints of the USB C and Micro USB Ports as well as the BQ769 were too small for the 0.4mm mill bit available at the fablab. 
+            </p>
+            <div class="image" style="grid-column: 1 / 7;">
+              <img src="images/electronics-design/Bildschirmfoto 2026-03-06 um 14.58.19.png" alt="Electronics design screenshot" style="filter: brightness(1.1)">
+            </div>
+            <p style="grid-column: 7 / 9;">
+              Because of this little but annoying caviat, I implemented my original plan that I had before finding out about the BQ769, which was to use voltage dividers on each of the cells to measure the individual voltages, using Claude AI to quickly calculate the correct resistor values for each individual cell referenced to each other.<br><br> I started simplifying a lot, using a 6 pin header for UDPI programming and RX/TX for Serial communication, along with a Thermistor, Discharge control MOSFET and an AMS1117 LDO to supply the ATtiny through the Balance Lead of the LiPo.
+            </p>
+            <p style="grid-column: 2 / 4;">
+              After finishing the voltage dividers, I used the Simulate Circuit Tool of KiCad, assigning voltages to each cell of a supposed LiPo Battery to confirm that all the Voltages are moving in range of the ATtiny ADCs.
+            </p>
+            
+            <div class="image" style="grid-column: 5 / 8;">
+              <img src="images/electronics-design/Bildschirmfoto 2026-03-06 um 14.43.14.png" alt="Electronics design screenshot" style="filter: brightness(1.1)">
+              <img src="images/electronics-design/Bildschirmfoto 2026-03-06 um 15.00.55.png" alt="Electronics design screenshot" style="filter: brightness(1.1)">
+            </div>
+            <div class="image" style="grid-column: 1 / 5;">
+              <img src="images/electronics-design/Bildschirmfoto 2026-03-06 um 15.14.18.png" alt="Electronics design screenshot" style="filter: brightness(1.1)">
+            </div>
+            <p style="grid-column: 5 / 7;">
+              After that I ran the Design Rules Checker of KiCad until i got only one Error (resulting from a 0Ω Resistor Bridge that will be used to simplify the routing in one spot. Then I finished up the Layout with a weirdly shaped outline and some mounting holes, and I feel ready for fabrication. I might end up sending the board design that uses the BQ769 and USB to Serial interface to a supplier like PCBWay to get it manufactured anyway.
+            </p>
+            
+            <div class="image" style="grid-column: 1 / 5;">
+              <img src="images/electronics-design/Bildschirmfoto 2026-03-06 um 13.36.57.png" alt="Electronics design screenshot" style="filter: brightness(1.1)">
+            </div>
+            <div class="image" style="grid-column: 5 / 9;">
+              <img src="images/electronics-design/Bildschirmfoto 2026-03-06 um 15.13.37.png" alt="Electronics design screenshot" style="filter: brightness(1.1)">
+            </div>
+
+          </section>
 
         </section>
 
