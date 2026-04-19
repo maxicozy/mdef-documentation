@@ -1,60 +1,37 @@
 centerActiveLink();
 
 function scrollToElement(targetElement, duration) { // duration in milliseconds
-  const targetPosition = targetElement.getBoundingClientRect().top;
-  const startPosition = window.scrollY;
-  const distance = targetPosition - 0; // Adjust if you want some offset
-  let startTime = null;
-
-  function animation(currentTime) {
-      if (startTime === null) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
-      window.scrollTo(0, run);
-      if (timeElapsed < duration) requestAnimationFrame(animation);
-  }
-
-  function easeInOutQuad(t, b, c, d) {
-    return c * t / d + b;
-  }
-
-  requestAnimationFrame(animation);
+  const targetPosition = targetElement.offsetTop - (window.innerHeight / 2) + 10; // Offset by half viewport height so section lands at mid-screen, slightly lower
+  
+  // Use native smooth scroll with behavior
+  window.scrollTo({
+    top: targetPosition,
+    behavior: 'smooth'
+  });
 }
 
 function centerActiveLink() {
-  const navbar = document.querySelector('.navbar-inner');
-  const links = navbar.querySelectorAll('a');
-  const activeLink = Array.from(links).find(link => link.classList.contains('active'));
-
-  if (!activeLink) return; // Exit if no active link
-
-  // Get the Y coordinates of the active link
-  const activeLinkRect = activeLink.getBoundingClientRect();
-  const activeLinkY = activeLinkRect.top + window.scrollY;
-
-  // Calculate the center of the active link
-  const activeLinkCenterY = activeLinkY + (activeLinkRect.height / 2);
-
-  // Get the Y coordinates of the top of the entire navbar-inner element
-  const navbarRect = navbar.getBoundingClientRect();
-  const navbarTopY = navbarRect.top + window.scrollY;
-
-  // Calculate the difference between the top of the navbar-inner and the center of the active link
-  const difference = activeLinkCenterY - navbarTopY;
-
-  // Get half of the viewport height
-  const halfViewportHeight = window.innerHeight / 2;
-
-  // Move the navbar-inner element to a place that's above the center by the calculated difference
-  // and adjust by half of the viewport height
-  const newTranslateY = -difference + halfViewportHeight;
-
-  // Apply the transformation
-  navbar.style.transform = `translateY(${newTranslateY}px)`;
+  // Navbar is now fixed at vertical center, no need to move it
 }
 
-// Call the function to center the active link
-centerActiveLink();
+function updatePointerPosition() {
+  const navbar = document.querySelector('.navbar');
+  const activeLink = document.querySelector('.navbar-inner a.active');
+
+  if (!activeLink) return;
+
+  // Get the vertical center position of the active nav link
+  const linkRect = activeLink.getBoundingClientRect();
+  const linkCenterY = linkRect.top + (linkRect.height / 2);
+
+  // Update the CSS variable on the navbar to move the pointer
+  navbar.style.setProperty('--pointer-top', `${linkCenterY}px`);
+}
+
+// Initialize pointer position on load
+window.addEventListener('load', updatePointerPosition);
+
+// Navbar is now fixed at vertical center, no repositioning needed
 
 document.addEventListener('DOMContentLoaded', function() {
   const iframeWrapper = document.querySelector('.iframe-wrapper');
@@ -72,23 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', adjustIframeHeight);
 });
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href');
-    const targetElement = document.querySelector(targetId);
-    if (targetElement) {
-      isScrollingToAnchor = true; // Indicate that scrolling to an anchor has started
-      scrollToElement(targetElement, 50); // Adjust duration as needed
-      setTimeout(() => {
-        isScrollingToAnchor = false; // Reset the flag after scrolling
-        centerActiveLink(); // Recenter the active link
-      }, 50);
-      // Ensure this duration matches the scrollToElement duration
-    }
-  });
-});
-
 let isScrollingToAnchor = false; // Step 1: Define a flag
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -97,23 +57,37 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentSectionIndex = -1;
 
   const updateActiveSectionAndLink = () => {
+    let closestSectionIndex = -1;
+    let closestDistance = Infinity;
 
-    let newSectionIndex = -1;
+    // Calculate the vertical position at the middle of the screen
+    const midScreenY = window.scrollY + (window.innerHeight / 2);
+
     sections.forEach((section, index) => {
       const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      if (window.scrollY >= (sectionTop - sectionHeight / 3)) {
-        newSectionIndex = index;
-        section.classList.add('active'); // Add active class to section
-      } else {
-        section.classList.remove('active'); // Remove active class from section
+      const distanceFromMidpoint = midScreenY - sectionTop; // How far past the section we are at mid-screen
+
+      // Find the section whose top we most recently passed at mid-screen
+      // Only consider sections we've already scrolled past (distance >= 0)
+      if (distanceFromMidpoint >= 0 && distanceFromMidpoint < closestDistance) {
+        closestDistance = distanceFromMidpoint;
+        closestSectionIndex = index;
       }
     });
+
+    // Clear all active classes
+    sections.forEach(section => section.classList.remove('active'));
+
+    // Set active only on the closest section
+    if (closestSectionIndex >= 0) {
+      sections[closestSectionIndex].classList.add('active');
+    }
+
     // Update navbar link only if section has changed
-    if (currentSectionIndex !== newSectionIndex) {
-      currentSectionIndex = newSectionIndex;
+    if (currentSectionIndex !== closestSectionIndex) {
+      currentSectionIndex = closestSectionIndex;
       navbarLinks.forEach((link, index) => {
-        link.classList.toggle('active', index === newSectionIndex);
+        link.classList.toggle('active', index === closestSectionIndex);
       });
     }
   };
@@ -124,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const throttledScrollHandler = () => {
     if (!isThrottled && !isScrollingToAnchor) { // Step 4: Check the flag
       updateActiveSectionAndLink();
-      centerActiveLink(); // Call centerActiveLink here to adjust navbar based on scroll
+      updatePointerPosition(); // Update pointer position based on active section
       isThrottled = true;
       setTimeout(() => {
         isThrottled = false;
@@ -141,13 +115,16 @@ document.addEventListener('DOMContentLoaded', () => {
       isScrollingToAnchor = true; // Set the flag when starting to scroll to an anchor
       const targetId = this.getAttribute('href');
       const targetSection = document.querySelector(targetId);
-      targetSection.scrollIntoView({ behavior: 'smooth' });
+      const startPosition = window.scrollY;
+      const targetPosition = targetSection.offsetTop - (window.innerHeight / 2) + 10;
+      const distance = Math.abs(targetPosition - startPosition);
+      scrollToElement(targetSection, distance);
   
       // Reset isScrollingToAnchor after scrolling is complete
-      // This might require a more sophisticated approach to detect when scrolling is done
       setTimeout(() => {
         isScrollingToAnchor = false;
-      }, 1000); // Example timeout, adjust based on actual scrolling duration
+        updatePointerPosition(); // Update pointer after smooth scroll completes
+      }, 400); // Native smooth scroll is ~300ms, add buffer
     });
   });
 });
