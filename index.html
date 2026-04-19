@@ -43,6 +43,7 @@
         <a href="#businessinno" class="subpage subpage-2">business innovation</a>
         <a href="#term2-y2" class="subpage">term 2</a>
         <a href="#electronicsdesign" class="subpage subpage-2">electronics design</a>
+        <a href="#electronicsproduction" class="subpage subpage-2">electronics production</a>
         <a href="#about">about</a>
       </div>
     </div>
@@ -2055,6 +2056,70 @@
               <img src="images/electronics-design/Bildschirmfoto 2026-03-06 um 15.13.37.png" alt="Electronics design screenshot" style="filter: brightness(1.1)">
             </div>
 
+          </section>
+
+          <section class="subsection" id="electronicsproduction">
+            <div style="grid-column: 1 / 4;">
+              <span style="display: block;" class="subtitle">electronics production</span>
+              <span style="display: block; margin-top: 8px;" class="date">11. - 18. mar </span>
+            </div>
+            <p style="grid-column: 1 / 3;">
+              Initially I felt quite confident going into the production stage, since I had already done the process once before and consider myself adept with the soldering iron. It turned out to be trickier than expected to actually produce a functioning result.
+              <br><br>
+              <span style="font-weight: 700;">Preparing the files</span><br><br>
+              The first step was using the "Plot" function to produce SVGs from KiCad for the different operations that the Mill needs to perform, and then preparing them as black and white pngs for mods. Going through <a href="http://modsproject.org">modsproject.org</a> with Danis help since I had forgotten everything from the last time I had done it was a breeze.<br><br>
+              Programs → Roland → SRM-20 mill → Mill 2D PCB is the path to access the preset for the machine we have at the Fablab.
+            </p>
+            <div class="image" style="grid-column: 3 / 9;">
+              <img src="images/electronics-production/modsproject.png" alt="mods project interface" style="filter: brightness(1.1)">
+            </div>
+            <div class="image" style="grid-column: 1 / 6;">
+              <img src="images/electronics-production/milled-pcb.jpeg" alt="milled PCB fresh from the mill" style="filter: brightness(0.8)">
+            </div>
+            <p style="grid-column: 6 / 8;">
+              Then the images need to be uploaded, the Millbit needs to be specified depending on the operation (Traces 1/64 inch, Outline and Holes 1/32 inch in my case), the speed needs to be set to 2 and the origin to 0 for x, y and z respectively, and then "calculate" spits out a simulation and the file for the mill in the .rml format. With this, I only needed to listen to a calm and soothing sound for an hour, and the milling chapter of the production was completed.
+            </p>
+
+            <p style="grid-column: 1 / 3;">
+              <span style="font-weight: 700;">Assembly and initial test</span><br><br>
+              The next part, soldering on all the electronics was quite fun and completed without much difficulty. The double sided sticky tape on a paper is a very clever way to organize all the electronic components that need to go on the board, but somehow i managed to constantly stick my arms to it while working and flung countless tiny resistors into the corners of the lab. <br><br>
+              The moment of truth came and passed without disappointment, the power led lit up and no smoke appeared when I plugged power to the board for the first time. However, I did notice that I had wired power to the LDO behind the voltage divider from the battery, so it wasn't getting enough power to provide to the ATtiny, so I shorthandedly cut some traces and soldered in tiny copper wires to fix the issue.
+            </p>
+            <div class="image" style="grid-column: 3 / 6;">
+              <img src="images/electronics-production/soldering.jpeg" alt="soldering components onto the board" style="filter: brightness(1)">
+            </div>
+            <div class="image" style="grid-column: 6 / 9;">
+              <img src="images/electronics-production/final-assembly.jpeg" alt="finished assembled board" style="filter: brightness(0.9)">
+            </div>
+            <div class="image" style="grid-column: 2 / 7;">
+              <img src="images/electronics-production/test-with-battery.jpeg" alt="testing the board with battery connection" style="filter: brightness(1); transform: rotate(-90deg);">
+            </div>
+            <div class="image" style="grid-column: 1 / 4;">
+              <img src="images/electronics-production/flashing.jpeg" alt="flashing setup with USB to FTDI cable" style="filter: brightness(1)">
+            </div>
+            <div class="image" style="grid-column: 4 / 9;">
+              <img src="images/electronics-production/attiny-flashing-settings.png" alt="ATtiny flashing settings in Arduino IDE" style="filter: brightness(1.1)">
+              <div style="height: 21px;"></div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <p>
+                  <span style="font-weight: 700;">Flashing and testing</span><br><br>
+                  After this the true challenge remained, which was to actually program the thing to do what it's supposed to do. Flashing the Chip and getting a Serial response was really interesting. I was surprised how quickly compiles and uploads go through to the ATtiny, once all the wires are in the correct spots and the right settings are chosen. It was important to choose the Board option without something called Optiboot, whatever that is.
+                </p>
+                <p>
+                  <br><br>
+                  To flash, we connected a USB to FTDI cable the following way: Black and Red to power and ground, then, on a Breadboard, we connect Orange and Yellow from the cable (TX and RX) through a 5KΩ resistor, then we connect RX to UPDI on the board. The 6 pin header on the board is wired to GND, 5V, UPDI, TX and RX. To get the Serial response, I would connect the TX pin on the header directly to the RX wire from the USB to FTDI cable. This allowed me a somewhat normal Arduino IDE workflow.
+                </p>
+              </div>
+            </div>
+
+            <p style="grid-column: 1 / 3;">
+              Since I am a dud at coding, all the code used for this was produced using Claude AI. So after an initial Blink sketch test worked like a charm, I uploaded the Code by Claude, and got the voltage dividers to measure somewhat accurate cell voltages quickly, but the accuracy is unfortunately limited by the less then ideal Resistor sizes with 1206 Footprint we had available at the lab. I'll be able to tweak this later by ordering more fittingly sized ones.
+              <br><br>
+              The Thermistor, however, gave me a lot of trouble. It was wired to pin PC0 on the ATtiny, which according to the Datasheet is using the ADC AIN6 on ADC Channel 2. Unfortunately, I wasn't able to figure out how to read data from ADC CH2 with Arduino code, but sunk many hours into trying. My plan now is to manually wire the thermistor to a different pin that accesses ADC CH1, since that worked for the Battery Taps. All in all, this was a pretty fun and intense deep dive into board manufacturing, and I have the feeling that the skills I picked up will come in handy in the future.
+            </p>
+            <div class="image" style="grid-column: 3 / 9;">
+              <img src="images/electronics-production/readings.gif" alt="live voltage readings from the cell taps" style="filter: brightness(1)">
+            </div>
           </section>
 
         </section>
