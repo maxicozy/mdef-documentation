@@ -44,6 +44,8 @@
         <a href="#term2-y2" class="subpage">term 2</a>
         <a href="#electronicsdesign" class="subpage subpage-2">electronics design</a>
         <a href="#electronicsproduction" class="subpage subpage-2">electronics production</a>
+        <a href="#term3-y2" class="subpage">term 3</a>
+        <a href="#machinedesign" class="subpage subpage-2">machine design</a>
         <a href="#about">about</a>
       </div>
     </div>
@@ -2121,18 +2123,98 @@
               <img src="images/electronics-production/readings.gif" alt="live voltage readings from the cell taps" style="filter: brightness(1)">
             </div>
 
-            <div class="image" style="grid-column: 1 / 6;">
-              <img src="images/electronics-production/group-work-bms.jpeg" alt="group work PCB design for manufacturer" style="filter: brightness(1)">
-            </div>
-            <p style="grid-column: 6 / 8;">
+            <p style="grid-column: 2 / 4;">
               <span style="font-weight: 700;">Group work</span><br><br>
-              For the group work, we need to design a PCB that we will send to a manufacturer. To my delight, the group chose my project for this purpose. I dug out the old schematic that I had made to use with the BQN769 chip, enabling a bunch of nice features like active cell balancing and current sensing and cuts out all the annoying resistor calculations for the voltage dividers. I also designed a USB to Serial adapter, which basically just has the USB to FTDI adapter we used as cable for flashing and the resistor setup all wired on the board. Dani showed me how to make a common ground area that extends over most of the backside of the board. Additionally I broke out some extra pins to provide more debug options and arranged the Silkscreen, adding some logos while I was at it. How this turns out will be updated here along the way.
+              For the group work, we need to design a PCB that we will send to a manufacturer. To my delight, the group chose my project for this purpose. I dug out the old schematic that I had made to use with the BQN769 chip, enabling a bunch of nice features like active cell balancing and current sensing and cuts out all the annoying resistor calculations for the voltage dividers. <br><br>
             </p>
+            <p style="grid-column: 4 / 6;">
+              <br><br>
+              I also designed a USB to Serial adapter, which basically just has the USB to FTDI adapter we used as cable for flashing and the resistor setup all wired on the board. Dani showed me how to make a common ground area that extends over most of the backside of the board. Additionally I broke out some extra pins to provide more debug options and arranged the Silkscreen, adding some logos while I was at it.
+            </p>
+            <p style="grid-column: 6 / 8;">
+              <span style="font-weight: 700;">Fabrication at JLCPCB </span><br><br>
+              To export the PCB for fabrication at JLCPCB, I followed these tutorials on their website:
+              <br><br>
+              <a href="https://jlcpcb.com/help/article/how-to-generate-gerber-and-drill-files-in-kicad-7" target="_blank">How to generate Gerber and Drill files in KiCad 7</a>
+              <br>
+              <a href="https://jlcpcb.com/help/article/how-to-generate-the-bom-and-centroid-file-from-kicad" target="_blank">How to generate the BOM and centroid file from KiCad</a>
+            </p>
+
+            <div class="image" style="grid-column: 1 / 5;">
+              <img src="images/electronics-production/BMS-top-layer.png" alt="Final layout – Top Layer" style="filter: brightness(1.1)">
+            </div>
+
+            <div class="image" style="grid-column: 5 / 9;">
+              <img src="images/electronics-production/BMS-bottom-layer.png" alt="Final layout – Bottom Layer" style="filter: brightness(1.1); transform: scaleX(-1);">
+            </div>
+
+
+            <p style="grid-column: 2 / 5;">
+              The guide on generating the Gerber and Drill files produced results that worked immediately, but the BOM specifically and also the CPL file were a bit more tricky to get right. I couldn't get the Plug-In to work that the Tutorial suggested to me to use for exporting the BOM, so I generated a BOM the way that KiCad provided and edited it using Sheets and Claude AI according to the examples provided in the tutorial.
+            </p>
+
+            <p style="grid-column: 5 / 8;">
+              Claude also pointed out I'd need to use "," instead of ";" as .csv notation to separate items into columns. After getting the files to be processed correctly by the JLCPCB website, the CPL file was still a bit off, since the rotation and placement origin points for some Elements are set differently in KiCad and the JLCPCB Library. Luckily, the JLCPCB preview window for component placements allows for manual correction of this issue.
+            </p>
+
+            <div class="image" style="grid-column: 1 / 5;">
+              <img src="images/electronics-production/component-placement_top-layer.png" alt="JLCPCB BOM and CPL confirmation" style="filter: brightness(1.1)">
+            </div>
+
+            <div class="image" style="grid-column: 5 / 9;">
+              <img src="images/electronics-production/component-placement_bottom-layer.png" alt="JLCPCB component placement preview" style="filter: brightness(1.1)">
+            </div>
+
+            <p style="grid-column: 1 / 3;">
+              Shortly after ordering the PCBs, as things go, I noticed a mistake I had made in the wiring around the Shunt resistor and another one next to the balance lead connector. <br><br>
+              The one on the Shunt resistor was because I initially didn't understand how it actually worked. I just followed the datasheet—very roughly apparently—so I ended up not connecting it along the ground of the main power line coming from the battery, where the BQN76920 could detect a small voltage drop across it proportionally to the current flowing through it, but instead i connected it on a parallel line instead.
+              <br><br>
+              The one on the wiring between the LiPo balance connector and the BQN76920 was just a straight failure on my part to copy the wiring indicated on the datasheet to my schematic.
+              <br><br>
+              How this goes will continue to be documented here.
+            </p>
+
+            <div class="image" style="grid-column: 3 / 6;">
+              <img src="images/electronics-production/faulty-wiring.png" alt="Error in shunt resistor circuit and BQN76920 wiring" style="filter: brightness(1.1)">
+              <div style="height: 10px;"></div>
+              <p>
+                Faulty wiring
+              </p>
+            </div>
+            <div class="image" style="grid-column: 6 / 9;">
+              <img src="images/electronics-production/fixed-wiring.png" alt="Fixed wiring" style="filter: brightness(1.1)">
+              <div style="height: 10px;"></div>
+              <p>
+                Fixed wiring
+              </p>
+            </div>
+
+            </section>
           </section>
 
         </section>
 
-      
+        <section id="term3-y2" class="mainsection">
+          <span class="title">term 3</span>
+          <span class="date" style="margin-top: 8px;">apr - jun 26</span> <br>
+
+          <section class="subsection" id="machinedesign">
+            <div style="grid-column: 1 / 4;">
+              <span style="display: block;" class="subtitle">machine design</span>
+              <span style="display: block; margin-top: 8px;" class="date">apr - jun 26</span>
+            </div>
+            <p style="grid-column: 1 / 3;">
+              The Machine Design course focuses on designing mechanisms and systems that can be built, tuned and iterated in the fablab. For me, this term is about combining mechanical thinking with digital fabrication to make machines that are both precise and expressive.
+            </p>
+            <p style="grid-column: 3 / 6;">
+              During the week we explored kinematic assemblies, joint types, and load paths, while testing prototypes in wood, metal and printed parts. The main design challenge was to develop a working machine concept that could be assembled with the tools available in the IAAC workshop and adapted as we learned more.
+            </p>
+            <p style="grid-column: 6 / 9;">
+              I am using this course to push my understanding of machine behaviour beyond simple component sketches. The goal is a coherent device that can move, respond and communicate its function clearly, while still fitting into the broader thesis of emergent fabrication and material reuse.
+            </p>
+          </section>
+        </section>
+
       <section id="about">
         
         <h1>About me</h1>
