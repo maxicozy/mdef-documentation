@@ -2201,17 +2201,142 @@
           <section class="subsection" id="machinedesign">
             <div style="grid-column: 1 / 4;">
               <span style="display: block;" class="subtitle">machine design</span>
-              <span style="display: block; margin-top: 8px;" class="date">apr - jun 26</span>
+              <span style="display: block; margin-top: 8px;" class="date">8. - 22. apr</span>
             </div>
+            <p style="grid-column: 1 / 4;">
+              For this project I was assigned into a group together with <a href="https://davmdef.github.io/MDEFWEB/" target="_blank">David</a>, <a href="https://fabacademy.org/2026/labs/barcelona/students/guillermo-obregon/" target="_blank">Guillermo</a> and <a href="https://fabacademy.org/2026/labs/barcelona/students/gennaro-picinni/about.html" target="_blank">Gennaro</a>. They were kind enough to agree working on a machine that would be related to my Thesis Project.<br><br>
+
+              From that, I already had rebuilt and worked with a Pellet Extruder based on the <a href="https://www.thingiverse.com/thing:380987/files" target="_blank">Lyman/Mulier v5 Extruder</a>, originally made by our Tutor <a href="https://www.linkedin.com/in/mikel-llobera-guelbenzu/" target="_blank">Mikel Llobera Guelbenzu</a>. We decided to expand upon this, implementing a way that would allow us to process the plastic after it exits the nozzle. Inspired by a Wire Bender from a previous Machine Design course that decorates our FabLab and with the goal to make something at least semi-useful, we wanted to go for something that could print a spring in one piece, which would greatly improve its stability over a regular FDM printed spring.
+            </p>
+
+            <div class="image" style="grid-column: 4 / 9;">
+              <img src="./images/machine-design/lyman-v5-extruder.jpeg" alt="Lyman v5 extruder" style="filter: brightness(1)">
+              <div style="height: 10px;"></div>
+              <p>Lyman v5 pellet extruder base setup.</p>
+            </div>
+
+            <div class="image" style="grid-column: 1 / 6;">
+              <img src="./images/machine-design/material-hoppper.png" alt="Material hopper" style="filter: brightness(1)">
+              <div style="height: 10px;"></div>
+              <p>Material hopper for pellet loading.</p>
+            </div>
+
+            <p style="grid-column: 6 / 8;">
+              To implement our spring-printer, we decided that the most straight forward way would be to place a rotating axle as a print surface perpendicular to the extruder barrel right in front of the nozzle. Then, by mounting the axle on a single-axis gantry that would be able to move the print surface along its central axis left and right across the nozzle, we would only need two degrees of freedom to make the spring-printing work.
+            </p>
+
+
+            <p style="grid-column: 2 / 4;">
+
+              <span style="font-weight: 700;">Manual print testing</span><br><br>
+
+              To confirm that the machine would actually be able to print the way we imagined it, we manually spun the aluminum rod we wanted to use as an axle in front of the nozzle, trying to catch the material in a loop and collect it in a spiral around the axle. Initially we struggled to make this work, but wrapping the axle in masking tape (thanks to a hint by Quentin Bolsee) made the print process work pretty much exactly the way we expected it.
+
+            </p>
+
+
+            <div class="image" style="grid-column: 4 / 9;">
+              <img src="./images/machine-design/manual-test.gif" alt="Manual print test" style="filter: brightness(1); width: 100%;">              <div style="height: 10px;"></div>
+              <p>Manual print test of the rotating axle.</p>
+            </div>
+
+            <div class="image" style="grid-column: 1 / 7;">
+              <img src="./images/machine-design/gantry-homing.gif" alt="Gantry homing sequence" style="filter: brightness(1); width: 100%;">                <div style="height: 10px;"></div>
+              <p>Gantry homing sequence test.</p>
+            </div>
+
+            <p style="grid-column: 7 / 9;">
+              <span style="font-weight: 700;">Single Axis Gantry</span><br><br>
+
+              To continue our streak of repurposing machines previously built by our Tutors, after looking for something we could use to start building our Gantry, we were soon handed a fully assembled single axis gantry built by Adai Surinach in 2020. This assembly included aluminum profile structure with 3D printed feet, belt & pulleys, moving carriage with ball bearings, a motor & belt transmission mounted vertically on the carriage, and 2 endstop switches. We tested it with a homing sequence to confirm all parts are working correctly.
+            </p>
+
             <p style="grid-column: 1 / 3;">
-              The Machine Design course focuses on designing mechanisms and systems that can be built, tuned and iterated in the fablab. For me, this term is about combining mechanical thinking with digital fabrication to make machines that are both precise and expressive.
+              <span style="font-weight: 700;">Rotating Axle</span><br><br>
+
+              To implement the spinning Axle, it made sense to use the Stepper / Belt transmission that was already mounted on the gantry. Adai provided us with a 3D model of the mounting plate of the carriage where the motor was previously fixed to, and David quickly used it as a base to model a motor mount that would allow us to attach the motor vertically on the gantry.
             </p>
-            <p style="grid-column: 3 / 6;">
-              During the week we explored kinematic assemblies, joint types, and load paths, while testing prototypes in wood, metal and printed parts. The main design challenge was to develop a working machine concept that could be assembled with the tools available in the IAAC workshop and adapted as we learned more.
+
+            <div class="image" style="grid-column: 3 / 6;">
+              <img src="./images/machine-design/gantry_motor-mount_cad.png" alt="Gantry motor mount CAD" style="filter: brightness(1)">
+              <div style="height: 10px;"></div>
+              <p>Motor mount on gantry carriage.</p>
+            </div>
+
+            <div class="image" style="grid-column: 6 / 9;">
+              <img src="./images/machine-design/axle-transmission.jpeg" alt="Axle transmission assembly" style="filter: brightness(1)">
+              <div style="height: 10px;"></div>
+              <p>Belt transmission driving the rotating axle.</p>
+            </div>
+
+            <div class="image" style="grid-column: 1 / 4;">
+              <img src="./images/machine-design/rotary-axle_test.gif" alt="Axle mount assembly" style="filter: brightness(1)" width="100%">
+              <div style="height: 10px;"></div>
+            </div>
+
+            <div class="image" style="grid-column: 5 / 8;">
+              <p>
+                Gennaro modeled the rest of the Axle mount: A structure to house a large ball bearing, an adapter to make our axle fit into the ball bearing without slack, and a disk that can receive the other end of the axle, fixing it to the belt transmission. Using a screw, the Axle can be removed from the transmission and entirely pulled out of the axle mount, so the printed object can easily be removed.
+              </p>
+              <div style="height: 42px;"></div>
+
+
+              <img src="./images/machine-design/axle-bearing-mount_explosion-view.png" alt="Axle bearing mount explosion view" style="filter: brightness(1)">
+              <div style="height: 10px;"></div>
+              <p>Explosion view of mount assembly.</p>
+              <div style="height: 42px;"></div>
+              <img src="./images/machine-design/axle-bearing-mount_model.png" alt="Axle bearing mount model" style="filter: brightness(1)">
+
+            </div>
+            <p style="grid-column: 2 / 5;">
+              <span style="font-weight: 700;">Electronics</span><br><br>
+
+              To actuate the machine, we assembled a small control system using a microcontroller, driver modules, and a voltage regulator. We wired up all components on a copper blank: a DC barrel Jack to connect our 12V power supply, an adjustable voltage regulator set to provide 3.3V, Caps on 12V and 3.3V power lines, screw terminals to connect the 4 cables each for the 2 steppers, female pin header rows for slotting in 2 A4988 stepper drivers, female pin header rows for slotting an ESP8266, and 2 4Pin headers to connect to the endstops on the gantry.
+              <br><br>
+              The Pin header setup for easy component exchangeability paid off, since it wasn't long until our first stepper driver gave out.
             </p>
-            <p style="grid-column: 6 / 9;">
-              I am using this course to push my understanding of machine behaviour beyond simple component sketches. The goal is a coherent device that can move, respond and communicate its function clearly, while still fitting into the broader thesis of emergent fabrication and material reuse.
+            
+            <div class="image" style="grid-column: 5 / 9;">
+                <img src="./images/machine-design/control-board.jpeg" alt="Control board with microcontroller and drivers" style="filter: brightness(1)" width="100%">
+            </div>
+
+            <div class="image" style="grid-column: 1 / 5;">
+              <img src="./images/machine-design/control-interface.png" alt="Control interface screenshot" style="filter: brightness(1)">
+            </div>
+              
+            <p style="grid-column: 5 / 8;">
+              <span style="font-weight: 700;">Control Interface</span><br><br>
+
+              In order to operate the whole machine (extruder and shaping mechanism) as a single entity, we had Claude AI build us a simple control interface. It connects to the Extruder via USB and to the ESP8266 that controls the steppers via Wifi. In this setup, the Extrusion speed is permanently updated depending on the rotation speed of the Gantry determined by the X Amplitude on the Joystick.
+              <br><br>
+              The interface includes: connection status indication of the two subsystems, temperature control for the extruder, and joystick-based motion input for control of linear movement and rotation.
             </p>
+
+            <div class="image" style="grid-column: 1 / 4;">
+              <img src="./images/machine-design/shooting.jpeg" alt="Shooting behind the scenes" style="filter: brightness(1)">
+              <div style="height: 10px;"></div>
+              <p>Detailed view of shaped sample results.</p>
+            </div>
+
+            <p style="grid-column: 4 / 6;">
+              <span style="font-weight: 700;">Printing results</span><br><br>
+
+              The first shaping tests produced blue spiral samples from shredded HDPE bottle caps. Some of the results are actually quite springy, and one turned out as an almost completely sealed pipe segment, which inspired me to use the machine to produce some elements that can be used in furniture construction. Further experimentation and adjustments to the control code are needed to provide more useful and consistent results.
+            </p>
+            
+            <div class="image" style="grid-column: 6 / 9;">
+              <img src="./images/machine-design/print-results.jpeg" alt="Print results and samples" style="filter: brightness(1)" width:"100%">
+              <div style="height: 10px;"></div>
+              <p>Initial print results showing spiral coil formation.</p>
+            </div>
+
+
+            <div class="image" style="grid-column: 1 / 9;">
+              <img src="./images/machine-design/print-process.png" alt="Print process setup" style="filter: brightness(1)">
+              <div style="height: 10px;"></div>
+              <p>Complete printing setup and material flow.</p>
+            </div>
+
           </section>
         </section>
 
