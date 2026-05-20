@@ -309,6 +309,14 @@ h3 {
   grid-row-gap: 42px; /* Gutter between rows */
   margin-bottom: auto;
 }
+.subsection .subcolumns-6 {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); 
+  grid-column-gap: 21px; /* Gutter between columns */
+  grid-row-gap: 42px; /* Gutter between rows */
+  margin-bottom: auto;
+}
+
 
 .subsection .image{
   max-width: 100%;
